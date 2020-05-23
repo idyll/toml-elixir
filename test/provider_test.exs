@@ -43,9 +43,8 @@ defmodule Toml.Test.ProviderTest do
     file = Path.join([__DIR__, "fixtures", "provider.toml"])
     Application.put_all_env(toml: [nested: [deep: "success!"]])
 
-    opts = Toml.Provider.init(path: file, keys: :atoms!)
+    Toml.Provider.init(path: file, keys: :atoms!)
 
-    assert Toml.Provider.is_distillery_env?()
     assert [deep: "success!", foo: "bar"] = Application.get_env(:toml, :nested)
   end
 
